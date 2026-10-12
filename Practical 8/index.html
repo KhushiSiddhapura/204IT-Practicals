@@ -92,7 +92,7 @@
 
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        var checkPassword = document.getElementById("Confirm").value;
+        var checkPassword = document.getElementById("confirm").value;
         var email = document.getElementById("email").value;
         var mobile = document.getElementById("mobile").value;
 
@@ -112,12 +112,7 @@
           "</td></tr>" +
           "</table>";
 
-        username = "";
-        password = "";
-        checkPassword = "";
-        email = "";
-        mobile = "";
-        return false;
+        document.getElementById("myForm").reset();
       }
     </script>
   </body>
