@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <body>
+    <h2>Registration Form</h2>
+
+    Username:
+    <input type="text" id="username" onblur="check(this)" />
+    <span id="usernameMsg"></span>
+    <br /><br />
+
+    Password:
+    <input type="password" id="password" onblur="check(this)" />
+    <span id="passwordMsg"></span>
+    <br /><br />
+
+    Confirm Password:
+    <input type="password" id="confirm" onblur="check(this)" />
+    <span id="confirmMsg"></span>
+    <br /><br />
+
+    Email:
+    <input type="text" id="email" onblur="check(this)" />
+    <span id="emailMsg"></span>
+    <br /><br />
+
+    Mobile:
+    <input type="text" id="mobile" onblur="check(this)" />
+    <span id="mobileMsg"></span>
+
+    <script>
+      function check(input) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open(
+          "GET",
+          "validate.php?field=" +
+            input.id +
+            "&value=" +
+            input.value +
+            "&password=" +
+            document.getElementById("password").value,
+          true,
+        );
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById(input.id + "Msg").innerHTML =
+              xhr.responseText;
+          }
+        };
+
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
