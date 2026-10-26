@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+    <h2>Simple Calculator</h2>
+
+    Value 1:
+    <input type="number" id="num1"><br><br>
+
+    Value 2:
+    <input type="number" id="num2"><br><br>
+
+    Operation:
+    <select id="operation">
+        <option value="add">Addition</option>
+        <option value="sub">Subtraction</option>
+        <option value="mul">Multiplication</option>
+        <option value="div">Division</option>
+    </select><br><br>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculate() {
+            let a = document.getElementById("num1").value;
+            let b = document.getElementById("num2").value;
+            let op = document.getElementById("operation").value;
+
+            let data = {
+                num1: a,
+                num2: b,
+                operation: op
+            };
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "calculate.php", true);
+
+            xhr.setRequestHeader(
+                "Content-Type",
+                "application/json"
+            );
+
+            xhr.onload = function () {
+                let response = JSON.parse(xhr.responseText);
+
+                document.getElementById("result").innerHTML =
+                    "Result: " + response.result;
+            };
+
+            xhr.send(JSON.stringify(data));
+        }
+    </script>
+
+</body>
+</html>
